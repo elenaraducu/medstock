@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gestionare Stocuri</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Gestionare Stocuri</h1>
+    <nav>
+      <a href="dashboard.html">Dashboard</a> |
+      <a href="rapoarte.html">Rapoarte</a> |
+      <a href="stocuri.html">Gestionare Stocuri</a> |
+      <a href="transferuri.html">Transferuri</a> |
+      <a href="index.html">Logout</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Adăugare Medicament Nou</h2>
+      <form id="adaugareMedicament">
+        <input type="text" placeholder="Denumire medicament" required />
+        <input type="number" placeholder="Cantitate" required />
+        <input type="text" placeholder="Număr lot" required />
+        <input type="date" placeholder="Data expirării" required />
+        <button type="submit">Adaugă</button>
+      </form>
+    </section>
+
+    <section>
+      <h2>Actualizare Stocuri</h2>
+      <form id="actualizareStocuri">
+        <input type="text" placeholder="Denumire medicament" required />
+        <input type="number" placeholder="Cantitate de adăugat" required />
+        <button type="submit">Actualizează</button>
+      </form>
+    </section>
+
+    <section>
+      <h2>Eliminare Medicamente Expirate</h2>
+      <button id="btnEliminare">Confirmă Eliminare</button>
+    </section>
+
+    <section>
+      <h2>Transfer către alte unități</h2>
+      <form id="transferForm">
+        <label>Pas 1: Selectează medicamentul</label><br />
+        <input type="text" placeholder="Nume medicament" required /><br /><br />
+
+        <label>Pas 2: Cantitate de transferat</label><br />
+        <input type="number" placeholder="Cantitate" required /><br /><br />
+
+        <label>Pas 3: Unitate medicală de destinație</label><br />
+        <select required>
+          <option>Spital A</option>
+          <option>Spital B</option>
+          <option>Spital C</option>
+        </select><br /><br />
+
+        <button type="submit">Inițiază transfer</button>
+      </form>
+    </section>
+
+    <section>
+      <h2>Gestionare Trasabilitate</h2>
+      <form id="trasabilitateForm">
+        <input type="text" placeholder="Caută după număr lot" />
+        <button type="submit">Caută</button>
+      </form>
+      <div id="rezultatTrasabilitate"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Platformă Monitorizare Medicamente</p>
+  </footer>
+
+  <script>
+    document.getElementById('btnEliminare').addEventListener('click', function() {
+      if(confirm('Ești sigur că vrei să elimini medicamentele expirate?')) {
+        alert('Medicamentele expirate au fost eliminate (simulare).');
+      }
+    });
+
+    document.getElementById('transferForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Cererea de transfer a fost inițiată (simulare).');
+    });
+
+    document.getElementById('trasabilitateForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const lot = e.target[0].value;
+      if(lot) {
+        document.getElementById('rezultatTrasabilitate').textContent = 'Detalii trasabilitate pentru lotul: ' + lot;
+      } else {
+        document.getElementById('rezultatTrasabilitate').textContent = 'Introduceți un număr de lot valid.';
+      }
+    });
+  </script>
+</body>
+</html>

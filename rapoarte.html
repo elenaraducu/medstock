@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <title>Rapoarte</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Rapoarte</h1>
+    <nav>
+      <a href="dashboard.html">Dashboard</a> |
+      <a href="rapoarte.html">Rapoarte</a> |
+      <a href="stocuri.html">Gestionare Stocuri</a> |
+      <a href="transferuri.html">Transferuri</a> |
+      <a href="index.html">Logout</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Rapoarte periodice</h2>
+      <button onclick="exportCSV()">Exportă CSV</button>
+      <button onclick="exportPDF()">Exportă PDF</button>
+
+      <div id="raportContent">
+        <h3>Raport consum medicamente</h3>
+        <p>Grafice și date (exemplu simplificat)...</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    function exportCSV() {
+      const csvContent = 'data:text/csv;charset=utf-8,' +
+        'Medicament,Cantitate Consumată\n' +
+        'Ibuprofen,150\nParacetamol,200\nAmoxicilină,100';
+
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement('a');
+      link.setAttribute('href', encodedUri);
+      link.setAttribute('download', 'raport_consum.csv');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    function exportPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      doc.text("Raport consum medicamente", 10, 10);
+      doc.text("Ibuprofen: 150 unități", 10, 20);
+      doc.text("Paracetamol: 200 unități", 10, 30);
+      doc.text("Amoxicilină: 100 unități", 10, 40);
+      doc.save("raport_consum.pdf");
+    }
+  </script>
+</body>
+</html>

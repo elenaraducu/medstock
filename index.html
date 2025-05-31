@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login - Medicaments Management</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Login</h1>
+  </header>
+
+  <main>
+    <form id="loginForm">
+      <label>Nume + Prenume:</label><br />
+      <input type="text" name="nume" required /><br />
+
+      <label>E-mail profesional:</label><br />
+      <input type="email" name="email" required /><br />
+
+      <label>Parolă:</label><br />
+      <input type="password" name="parola" required /><br />
+
+      <button type="submit">Logare</button>
+    </form>
+
+    <section id="resetSection">
+      <h2>Recuperare parolă</h2>
+      <form id="resetForm">
+        <label>Introduceți adresa de e-mail:</label><br />
+        <input type="email" name="resetEmail" required /><br />
+        <button type="submit">Trimite link resetare</button>
+      </form>
+      <div id="resetMsg"></div>
+    </section>
+  </main>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      // doar redirect demo
+      alert('Logare reușită! Mergi la Dashboard.');
+      window.location.href = 'dashboard.html';
+    });
+
+    document.getElementById('resetForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = e.target.resetEmail.value;
+      document.getElementById('resetMsg').textContent = 'Link de resetare a fost trimis către ' + email;
+    });
+  </script>
+</body>
+</html>
