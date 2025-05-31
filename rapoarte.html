@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <title>Rapoarte</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- Adăugăm Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <header>
@@ -25,7 +27,8 @@
 
       <div id="raportContent">
         <h3>Raport consum medicamente</h3>
-        <p>Grafice și date (exemplu simplificat)...</p>
+        <!-- Înlocuim textul cu graficul -->
+        <canvas id="consumMedicamenteChart" width="400" height="200"></canvas>
       </div>
     </section>
   </main>
@@ -55,6 +58,40 @@
       doc.text("Amoxicilină: 100 unități", 10, 40);
       doc.save("raport_consum.pdf");
     }
+
+    // Configurare grafic Chart.js
+    const ctx = document.getElementById('consumMedicamenteChart').getContext('2d');
+    const consumMedicamenteChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Ibuprofen', 'Paracetamol', 'Amoxicilină'],
+        datasets: [{
+          label: 'Cantitate consumată',
+          data: [150, 200, 100],
+          backgroundColor: [
+            'rgba(54, 162, 235, 0.7)',
+            'rgba(255, 206, 86, 0.7)',
+            'rgba(255, 99, 132, 0.7)'
+          ],
+          borderColor: [
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(255, 99, 132, 1)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              stepSize: 50
+            }
+          }
+        }
+      }
+    });
   </script>
 </body>
 </html>
